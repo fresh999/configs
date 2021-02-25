@@ -1,0 +1,68 @@
+snippet beg "Generic environment" b
+\begin{$1}
+	${2:<++>}
+\end{$1}
+endsnippet
+
+snippet sec "Section" b
+\section{${1:section name}}
+\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+endsnippet
+
+snippet tab "Table environment" b
+\begin{table}[${1:h}]
+	\centering
+	\begin{tabular}{${4:c}}
+		$5
+	\end{tabular}
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+\end{table}
+endsnippet
+
+snippet itemize "Itemize environment" b
+\begin{itemize}
+	\item $1
+\end{itemize}
+endsnippet
+
+snippet enum "Enumerate environment" b
+\begin{enumerate}
+	\item $1
+\end{enumerate}
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${1:h}]
+	\centering
+	\includegraphics[scale=${4:0.5}]{${5:path}}
+	\caption{${2:caption}}
+	\label{fig:${3:label}}
+\end{figure}
+endsnippet
+
+snippet eq "Equation environment" b
+\begin{equation}
+\label{eq:${1:equation}}
+	$2
+\end{equation}
+endsnippet
+
+snippet align "Align environment" b
+\begin{align}
+\label{eq:${1:align}}
+	$2
+\end{align}
+endsnippet
+
+snippet item "item" b
+\item
+endsnippet
+
+snippet it "Italic font" w
+\textit{$1}
+endsnippet
+
+snippet bf "Bold font" w
+\textbf{$1}
+endsnippet

@@ -1,0 +1,512 @@
+global !p
+texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC', 'AmsD', 'AmsE', 'AmsF', 'AmsG', 'AmsAS', 'AmsBS', 'AmsCS', 'AmsDS', 'AmsES', 'AmsFS', 'AmsGS' ]]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(i for i in reversed(synstackids) if i in texIgnoreMathZoneIds or i in texMathZoneIds)
+		return first != ignore
+	except StopIteration:
+		return False
+endglobal
+
+# entering inline math mode
+context "not math()"
+snippet m " inline math mode" w
+\\( $1 \\)
+endsnippet
+
+# lowercase Greek letters
+context "math()"
+snippet alpha "alpha" ewA
+\alpha
+endsnippet
+
+context "math()"
+snippet beta "beta" ewA
+\beta
+endsnippet
+
+context "math()"
+snippet gamma "gamma" ewA
+\gamma
+endsnippet
+
+context "math()"
+snippet delta "delta" ewA
+\delta
+endsnippet
+
+context "math()"
+snippet epsilon "epsilon" ewA
+\epsilon
+endsnippet
+
+context "math()"
+snippet varepsilon "varepsilon" ewA
+\varepsilon
+endsnippet
+
+context "math()"
+snippet zeta "zeta" ewA
+\zeta
+endsnippet
+
+context "math()"
+snippet eta "eta" ewA
+\eta
+endsnippet
+
+context "math()"
+snippet theta "theta" ewA
+\theta
+endsnippet
+
+context "math()"
+snippet iota "iota" ewA
+\iota
+endsnippet
+
+context "math()"
+snippet kappa "kappa" ewA
+\kappa
+endsnippet
+
+context "math()"
+snippet lambda "lambda" ewA
+\lambda
+endsnippet
+
+context "math()"
+snippet mu "mu" ewA
+\mu
+endsnippet
+
+context "math()"
+snippet nu "nu" ewA
+\nu
+endsnippet
+
+context "math()"
+snippet xi "xi" ewA
+\xi
+endsnippet
+
+context "math()"
+snippet omega "omega" ewA
+\omega
+endsnippet
+
+context "math()"
+snippet pi "pi" ewA
+\pi
+endsnippet
+
+context "math()"
+snippet rho "rho" ewA
+\rho
+endsnippet
+
+context "math()"
+snippet sigma "sigma" ewA
+\sigma
+endsnippet
+
+context "math()"
+snippet tau "tau" ewA
+\tau
+endsnippet
+
+context "math()"
+snippet upsilon "upsilon" ewA
+\upsilon
+endsnippet
+
+context "math()"
+snippet phi "phi" ewA
+\phi
+endsnippet
+
+context "math()"
+snippet varphi "varphi" ewA
+\varphi
+endsnippet
+
+context "math()"
+snippet chi "chi" ewA
+\chi
+endsnippet
+
+context "math()"
+snippet psi "psi" ewA
+\psi
+endsnippet
+
+# uppercase Greek letters
+context "math()"
+snippet Alpha "Alpha" ewA
+\Alpha
+endsnippet
+
+context "math()"
+snippet Gamma "Gamma" ewA
+\Gamma
+endsnippet
+
+context "math()"
+snippet Delta "Delta" ewA
+\Delta
+endsnippet
+
+context "math()"
+snippet Theta "Theta" ewA
+\Theta
+endsnippet
+
+context "math()"
+snippet Lambda "Lambda" ewA
+\Lambda
+endsnippet
+
+context "math()"
+snippet Xi "Xi" ewA
+\Xi
+endsnippet
+
+context "math()"
+snippet Omega "Omega" ewA
+\Omega
+endsnippet
+
+context "math()"
+snippet Pi "Pi" ewA
+\Pi
+endsnippet
+
+context "math()"
+snippet Sigma "Sigma" ewA
+\Sigma
+endsnippet
+
+context "math()"
+snippet Upsilon "Upsilon" ewA
+\Upsilon
+endsnippet
+
+context "math()"
+snippet Phi "Phi" ewA
+\Phi
+endsnippet
+
+context "math()"
+snippet Psi "Psi" ewA
+\Psi
+endsnippet
+
+# operators
+context "math()"
+snippet sum "sum" ew
+\sum
+endsnippet
+
+context "math()"
+snippet prod "prod" ew
+\prod
+endsnippet
+
+context "math()"
+snippet limsup "limsup" ew
+\limsup
+endsnippet
+
+context "math()"
+snippet liminf "liminf" ew
+\liminf
+endsnippet
+
+context "math()"
+snippet sup "sup" ewA
+\sup
+endsnippet
+
+context "math()"
+snippet inf "inf" ew
+\inf
+endsnippet
+
+context "math()"
+snippet int "Integral sign" ew
+\int $1 \dd{$2}
+endsnippet
+
+context "math()"
+snippet "[^\\](\d)?dv" "Nth derivative in fraction notation" rew
+\dv`!p if match.group(1):
+			snip.rv = f'[{match.group(1)}]'`{$1}{$2}
+endsnippet
+
+context "math()"
+snippet partial "partial symbol" ew
+\partial_{$1}
+endsnippet
+
+context "math()"
+snippet lim "Limit" ew
+\lim_{$1}
+endsnippet
+
+# encapsulating keywords
+context "math()"
+snippet hat "hat" ew
+\widehat{$1}
+endsnippet
+
+context "math()"
+snippet bar "bar" ew
+\overline{$1}
+endsnippet
+
+context "math()"
+snippet tilde "tilde" ew
+\widetilde{$1}
+endsnippet
+
+context "math()"
+snippet dot "dot" ew
+\dot{$1}
+endsnippet
+
+context "math()"
+snippet ddot "double dot" ew
+\ddot{$1}
+endsnippet
+
+# set theory
+context "math()"
+snippet bn "natural numbers" ew
+\mathbb{N}
+endsnippet
+
+context "math()"
+snippet bz "integers" ew
+\mathbb{N}
+endsnippet
+
+context "math()"
+snippet bq "rationals" ew
+\mathbb{Q}
+endsnippet
+
+context "math()"
+snippet br "real numbers" ew
+\mathbb{R}
+endsnippet
+
+context "math()"
+snippet bc "complex numbers" ew
+\mathbb{C}
+endsnippet
+
+context "math()"
+snippet subset "subset" ew
+\subseteq
+endsnippet
+
+context "math()"
+snippet in "in" ew
+\in
+endsnippet
+
+context "math()"
+snippet notin "not in" ew
+\notin
+endsnippet
+
+context "math()"
+snippet cup "set union" ew
+\cup
+endsnippet
+
+context "math()"
+snippet cap "set intersection" ew
+\cap
+endsnippet
+
+context "math()"
+snippet smin "set difference" ew
+\setminus
+endsnippet
+
+context "math()"
+snippet set "set" ew
+\left\\{ $1 \right\\}
+endsnippet
+
+context "math()"
+snippet empty "empty set" ew
+\varnothing
+endsnippet
+
+# logic
+context "math()"
+snippet exists "exists" ew
+\exists \,
+endsnippet
+
+context "math()"
+snippet nexists "does not exists" ew
+\nexists \,
+endsnippet
+
+context "math()"
+snippet forall "for all" ew
+\forall \,
+endsnippet
+
+context "math()"
+snippet implies "implies" ew
+\implies
+endsnippet
+
+context "math()"
+snippet iff "if and only if" ew
+\iff
+endsnippet
+
+# relations
+context "math()"
+snippet leq "lower or equal" ew
+\leq
+endsnippet
+
+context "math()"
+snippet geq "greater or equal" ew
+\geq
+endsnippet
+
+context "math()"
+snippet neq "not equal" ew
+\neq
+endsnippet
+
+# operations
+context "math()"
+snippet frac "fraction" ew
+\frac{$1}{$2}
+endsnippet
+
+context "math()"
+snippet dot "central dot" ew
+\cdot
+endsnippet
+
+context "math()"
+snippet times "times sign" ew
+\times
+endsnippet
+
+# delimiters
+context "math()"
+snippet rbra "round brackets" ew
+\left( $1 \right)
+endsnippet
+
+context "math()"
+snippet sbra "square brackets" ew
+\left[ $1 \right]
+endsnippet
+
+context "math()"
+snippet cbra "curly brackets" ew
+\left\\{ $1 \right\\}
+endsnippet
+
+# functions
+context "math()"
+snippet to "to" ew
+\to
+endsnippet
+
+context "math()"
+snippet mapsto "maps to" ew
+\mapsto
+endsnippet
+
+context "math()"
+snippet comp "function composition" ew
+\circ
+endsnippet
+
+context "math()"
+snippet sin "sine" ew
+\sin{$1}
+endsnippet
+
+context "math()"
+snippet cos "cosine" ew
+\cos{$1}
+endsnippet
+
+context "math()"
+snippet tan "tangent" ew
+\tan{$1}
+endsnippet
+
+context "math()"
+snippet log "natural logarithm" ew
+\log{$1}
+endsnippet
+
+context "math()"
+snippet sqrt "square root" ew
+\sqrt{$1}
+endsnippet
+
+context "math()"
+snippet _ "subscript" ei
+_{$1}
+endsnippet
+
+# constants
+context "math()"
+snippet infty "infinity" ew
+\infty
+endsnippet
+
+# miscellanea
+context "math()"
+snippet wedge "wedge" ew
+\wedge
+endsnippet
+
+context "math()"
+snippet otimes "tensor product" ew
+\otimes
+endsnippet
+
+context "math()"
+snippet dots "dots" ew
+\dots
+endsnippet
+
+context "math()"
+snippet inner "inner product" ew
+\langle $1 \rangle
+endsnippet
+
+context "math()"
+snippet einner "empty inner product" ew
+\langle \,, \rangle
+endsnippet
+
+context "math()"
+snippet nabla "nabla" ew
+\nabla
+endsnippet

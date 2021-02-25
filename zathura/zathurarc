@@ -1,0 +1,21 @@
+map j scroll left
+map m scroll down
+
+map B jumplist backward
+map F jumplist forward
+map M navigate next
+map P print
+
+map <C-i> zoom in
+map <C-o> zoom out
+map <C-q> quit
+
+set statusbar-v-padding 0
+set statusbar-h-padding 0
+set selection-clipboard clipboard
+set guioptions vh
+set page-padding 10
+set window-height 1080
+set window-width 1920
+
+unmap h
