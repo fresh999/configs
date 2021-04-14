@@ -243,7 +243,7 @@ endsnippet
 
 context "math()"
 snippet int "Integral sign" ew
-\int $1 \dd{$2}
+\int $1\: \mathrm{d}$2{$3}
 endsnippet
 
 context "math()"
@@ -474,6 +474,11 @@ snippet _ "subscript" ei
 _{$1}
 endsnippet
 
+context "math()"
+snippet abs "absolute value" ew
+\left| $1 \right|
+endsnippet
+
 # constants
 context "math()"
 snippet infty "infinity" ew
@@ -509,4 +514,9 @@ endsnippet
 context "math()"
 snippet nabla "nabla" ew
 \nabla
+endsnippet
+
+context "math"
+snippet col "colon" ew
+\colon
 endsnippet
