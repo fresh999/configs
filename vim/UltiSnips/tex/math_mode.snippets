@@ -243,7 +243,7 @@ endsnippet
 
 context "math()"
 snippet int "Integral sign" ew
-\int $1\: \mathrm{d}$2{$3}
+\int$1 \mathop{}\!\mathrm{d} $2
 endsnippet
 
 context "math()"
@@ -270,12 +270,12 @@ endsnippet
 
 context "math()"
 snippet bar "bar" ew
-\overline{$1}
+\bar{$1}
 endsnippet
 
 context "math()"
 snippet tilde "tilde" ew
-\widetilde{$1}
+\tilde{$1}
 endsnippet
 
 context "math()"
@@ -346,7 +346,7 @@ endsnippet
 
 context "math()"
 snippet set "set" ew
-\left\\{ $1 \right\\}
+\set{ $1 }
 endsnippet
 
 context "math()"
@@ -479,6 +479,22 @@ snippet abs "absolute value" ew
 \left| $1 \right|
 endsnippet
 
+context "math()"
+snippet norm "norm" ew
+\norm{$1}
+endsnippet
+
+#algebra
+context "math()"
+snippet im "image of map" ew
+\mathop{\mathrm{im}}
+endsnippet
+
+context "math()"
+snippet ker "kernel of morphism" ew
+\mathop{\mathrm{ker}}
+endsnippet
+
 # constants
 context "math()"
 snippet infty "infinity" ew
@@ -516,7 +532,12 @@ snippet nabla "nabla" ew
 \nabla
 endsnippet
 
-context "math"
+context "math()"
 snippet col "colon" ew
 \colon
+endsnippet
+
+context "math()"
+snippet bul "bullet" ew
+\bullet
 endsnippet
